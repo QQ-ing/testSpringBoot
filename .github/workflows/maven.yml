@@ -4,10 +4,10 @@
 name: Java CI with Maven
 
 on:
-#   push:
-#     branches: [ main ]
-  pull_request:
+  push:
     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
 jobs:
   build:
@@ -37,11 +37,12 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: my-ecr-repo-demo
+        ECR_REPOSITORY: dev-cbdc
         IMAGE_TAG: ${{ github.sha }}
+        NAME: demo
       run: |
         echo "ready to build docker images"
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./docker/Dockerfile .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY/$NAME:$IMAGE_TAG -f ./docker/Dockerfile .
         echo "finished build "
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     
