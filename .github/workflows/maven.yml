@@ -40,9 +40,9 @@ jobs:
         ECR_REPOSITORY: my-ecr-repo-demo
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo "Read to build docker images"
+        echo "ready to build docker images"
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./docker/Dockerfile .
-        echo "finishd build "
+        echo "finished build "
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     
     
