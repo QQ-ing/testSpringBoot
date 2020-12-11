@@ -9,6 +9,9 @@ on:
 #   pull_request:
 #     branches: [ main ]
 
+env:
+  SHORTSHA: $(git rev-parse --short=7 ${{ github.sha }})
+
 jobs:
   build:
 
@@ -39,9 +42,10 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: dev-cbdc
 #        IMAGE_TAG: ${{ github.sha }}
-        IMAGE_TAG: testSpringBoot-v1
+        IMAGE_TAG: testSpringBoot-v1-$SHORTSHA
       run: |
         echo "ready to build docker images"
+        echo $IMAGE_TAG
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./docker/Dockerfile .
         echo "finished build "
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
