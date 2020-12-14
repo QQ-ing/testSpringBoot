@@ -62,24 +62,24 @@ jobs:
         ECR_REPOSITORY: dev-cbdc
         IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
       run: |
-        sed -i 's!ECR-IMAGE-TAG!'"$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG"'!g' ./testsb/values.yaml
-        cat ./testsb/values.yaml
+        sed -i 's!ECR-IMAGE-REP!'"$ECR_REGISTRY/$ECR_REPOSITORY"'!g' ./testsb/values.yaml
+        sed -i 's!ECR-IMAGE-TAG!'"$PER_IMAGE_TAG-$IMAGE_TAG"'!g' ./testsb/values.yaml
 
 #    - name: helm install
 #      uses: koslib/helm-eks-action@master
 #      env:
 #        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_TEST }}
 #      with:
-#        command: helm install testsb -f ./testsb
+#        command: helm install testsb  ./testsb
 #
-#    - name: helm update
-#      uses: koslib/helm-eks-action@master
-#      env:
-#        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_TEST }}
-#        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#        ECR_REPOSITORY: dev-cbdc
-#        IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
-#      with:
-#        command: helm upgrade --set imageTag=$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG testsb
+    - name: helm update
+      uses: koslib/helm-eks-action@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_TEST }}
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: dev-cbdc
+        IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
+      with:
+        command: helm upgrade --set imageTag=$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG testsb
 
       

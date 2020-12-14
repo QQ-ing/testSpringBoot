@@ -4,6 +4,7 @@ metadata:
   name: "{{ include "testsb.fullname" . }}-test-connection"
   labels:
     {{- include "testsb.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace.business }}
   annotations:
     "helm.sh/hook": test
 spec:
