@@ -64,6 +64,7 @@ jobs:
       run: |
         sed -i 's!ECR-IMAGE-REP!'"$ECR_REGISTRY/$ECR_REPOSITORY"'!g' ./testsb/values.yaml
         sed -i 's!ECR-IMAGE-TAG!'"$PER_IMAGE_TAG-$IMAGE_TAG"'!g' ./testsb/values.yaml
+#        876796024057
 
 #    - name: helm install
 #      uses: koslib/helm-eks-action@master
