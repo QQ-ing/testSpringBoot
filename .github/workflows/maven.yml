@@ -55,8 +55,6 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG -f ./docker/Dockerfile .
         echo "finished build "
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG
-        sed -i 's/ECR-IMAGE-TAG/'"$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG"'/g' ./testsb/values.yaml
-        cat ./testsb/values.yaml
 
     - name: replice image tags
       env:
