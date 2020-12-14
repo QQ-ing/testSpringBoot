@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
-
+    
+    @GetMapping("/")
+    public String livenessProbe(){
+        return "UP";
+    }
+    
     @GetMapping("/justTest")
     public String justTest(){
         return "Hello, World";
