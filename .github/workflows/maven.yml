@@ -62,7 +62,7 @@ jobs:
         ECR_REPOSITORY: dev-cbdc
         IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
       run: |
-        sed -i 's/ECR-IMAGE-TAG/'"$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG"'/g' ./testsb/values.yaml
+        sed -i 's!ECR-IMAGE-TAG!'"$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG"'!g' ./testsb/values.yaml
         cat ./testsb/values.yaml
 
 #    - name: helm install
