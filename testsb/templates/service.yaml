@@ -4,6 +4,7 @@ metadata:
   name: {{ include "testsb.fullname" . }}
   labels:
     {{- include "testsb.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace.business }}
 spec:
   type: {{ .Values.service.type }}
   ports:
