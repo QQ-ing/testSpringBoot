@@ -81,6 +81,7 @@ jobs:
         ECR_REPOSITORY: dev-cbdc
         IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
       with:
-        command: helm upgrade --set imageTag=$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG testsb
+        command: helm upgrade --set imageTag=$ECR_REGISTRY/$ECR_REPOSITORY:$PER_IMAGE_TAG-$IMAGE_TAG testsb ./testsb
+
 
       

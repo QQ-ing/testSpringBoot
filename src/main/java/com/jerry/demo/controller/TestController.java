@@ -3,6 +3,9 @@ package com.jerry.demo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * @author Jerry
  * @date 2020/12/10
@@ -16,8 +19,11 @@ public class TestController {
     }
     
     @GetMapping("/justTest")
-    public String justTest(){
-        return "Hello, World";
+    public String justTest() throws UnknownHostException {
+        InetAddress addr = InetAddress.getLocalHost();
+        System.out.println("host:" + addr.getHostName());
+        System.out.println("ip:" + addr.getHostAddress());
+        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
     }
 
 }
