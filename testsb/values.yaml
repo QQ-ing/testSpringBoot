@@ -5,12 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: ECR-IMAGE-REP
-#  repository: ""
+  # repository: ECR-IMAGE-REP
+  repository: "876796024057.dkr.ecr.ap-east-1.amazonaws.com/dev-cbdc"
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ECR-IMAGE-TAG
-#  tag: "testSpringBoot-v1-dev-1c28"
+  # tag: ECR-IMAGE-TAG
+  tag: "testSpringBoot-v1-dev-1c28"
 
 namespace:
   business: business
