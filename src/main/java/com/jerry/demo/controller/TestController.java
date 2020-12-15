@@ -38,7 +38,7 @@ public class TestController {
     @GetMapping("/ethBlockNumber")
     public String ethBlockNumber() {
         
-        String url="besu-node.members/json-rpc";
+        String url="besu-node.members.svc.cluster.local:8545";
         // create an instance of RestTemplate
         RestTemplate restTemplate = new RestTemplate();
 
