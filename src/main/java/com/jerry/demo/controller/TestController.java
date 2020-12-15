@@ -1,10 +1,19 @@
 package com.jerry.demo.controller;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Jerry
@@ -24,6 +33,33 @@ public class TestController {
         System.out.println("host:" + addr.getHostName());
         System.out.println("ip:" + addr.getHostAddress());
         return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
+    }
+    
+    @GetMapping("/ethBlockNumber")
+    public String ethBlockNumber() {
+        
+        String url="besu-node.members/json-rpc";
+        // create an instance of RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+        // create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    
+        Map<String, Object> map = new HashMap<>();
+        map.put("jsonrpc", "2.0");
+        map.put("method", "eth_blockNumber");
+        map.put("params", null);
+        map.put("id",1);
+        
+        // build the request
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+        // send POST request
+        ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
+    
+        return response.getBody();
     }
 
 }
