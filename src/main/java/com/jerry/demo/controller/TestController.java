@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -22,7 +20,7 @@ import java.util.Map;
 @RestController
 public class TestController {
     
-    @GetMapping("/")
+    @GetMapping("/liveness")
     public String livenessProbe(){
         return "UP";
     }
@@ -32,7 +30,7 @@ public class TestController {
         InetAddress addr = InetAddress.getLocalHost();
         System.out.println("host:" + addr.getHostName());
         System.out.println("ip:" + addr.getHostAddress());
-        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
+        return "123-Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
     }
     
     @GetMapping("/ethBlockNumber")
