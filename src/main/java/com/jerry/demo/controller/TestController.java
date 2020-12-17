@@ -21,8 +21,13 @@ import java.util.Map;
 public class TestController {
     
     @GetMapping("/")
-    public String livenessProbe(){
+    public String index(){
         return "UP";
+    }
+    
+    @GetMapping("/liveness")
+    public String livenessProbe(){
+        return "Success";
     }
     
     @GetMapping("/justTest")
