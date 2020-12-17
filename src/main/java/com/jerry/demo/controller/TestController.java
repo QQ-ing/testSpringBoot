@@ -20,7 +20,7 @@ import java.util.Map;
 @RestController
 public class TestController {
     
-    @GetMapping("/liveness")
+    @GetMapping("/")
     public String livenessProbe(){
         return "UP";
     }
