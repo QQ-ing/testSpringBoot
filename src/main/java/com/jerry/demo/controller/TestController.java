@@ -35,7 +35,7 @@ public class TestController {
         InetAddress addr = InetAddress.getLocalHost();
         System.out.println("host:" + addr.getHostName());
         System.out.println("ip:" + addr.getHostAddress());
-        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress()+"123";
+        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
     }
     
     @GetMapping("/ethBlockNumber")
