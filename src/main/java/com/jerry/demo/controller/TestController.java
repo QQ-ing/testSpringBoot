@@ -21,8 +21,13 @@ import java.util.Map;
 public class TestController {
     
     @GetMapping("/")
-    public String livenessProbe(){
+    public String index(){
         return "UP";
+    }
+    
+    @GetMapping("/liveness")
+    public String livenessProbe(){
+        return "Success";
     }
     
     @GetMapping("/justTest")
@@ -30,7 +35,7 @@ public class TestController {
         InetAddress addr = InetAddress.getLocalHost();
         System.out.println("host:" + addr.getHostName());
         System.out.println("ip:" + addr.getHostAddress());
-        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress()+"123";
+        return "Hello, World！"+" host:" + addr.getHostName()+" ip:" + addr.getHostAddress();
     }
     
     @GetMapping("/ethBlockNumber")
