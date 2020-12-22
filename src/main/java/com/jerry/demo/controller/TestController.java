@@ -1,5 +1,8 @@
 package com.jerry.demo.controller;
 
+import com.jerry.demo.model.Userinfo;
+import com.jerry.demo.model.UserinfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -65,4 +68,13 @@ public class TestController {
         return response.getBody();
     }
 
+    @Autowired
+    UserinfoRepository userinfoRep;
+    
+    @GetMapping("/psqlSel")
+    public String postgresql(){
+        Userinfo userinfo=userinfoRep.findUserinfoById(1);
+        return userinfo.toString();
+    }
+    
 }
