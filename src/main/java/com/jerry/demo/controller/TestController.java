@@ -1,7 +1,7 @@
 package com.jerry.demo.controller;
 
-import com.jerry.demo.model.Userinfo;
-import com.jerry.demo.model.UserinfoRepository;
+import com.jerry.demo.model.Mytest;
+import com.jerry.demo.model.MytestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -69,12 +69,12 @@ public class TestController {
     }
 
     @Autowired
-    UserinfoRepository userinfoRep;
+    MytestRepository mytestRep;
     
     @GetMapping("/psqlSel")
     public String postgresql(){
-        Userinfo userinfo=userinfoRep.findUserinfoById(1);
-        return userinfo.toString();
+        Mytest mytest =mytestRep.findMytestById(1);
+        return mytest.toString();
     }
     
 }
