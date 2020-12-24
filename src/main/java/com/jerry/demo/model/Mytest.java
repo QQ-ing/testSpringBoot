@@ -8,8 +8,8 @@ import javax.persistence.*;
  * @date 2020/12/22
  */
 @Entity
-@Table(name="userinfo")
-public class Userinfo {
+@Table(name="mytest")
+public class Mytest {
     
     @Id
     private int id;
@@ -17,15 +17,15 @@ public class Userinfo {
     @Column(name="username")
     private String userName;
     
-    public Userinfo() {
+    public Mytest() {
     }
-    public Userinfo(String userName){
+    public Mytest(String userName){
         this.userName=userName;
     }
     
     @Override
     public String toString() {
-        return "Userinfo{" +
+        return "MyTest{" +
             "id=" + id +
             ", userName='" + userName + '\'' +
             '}';
