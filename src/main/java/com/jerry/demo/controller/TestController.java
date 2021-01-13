@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import java.net.InetAddress;
@@ -44,7 +45,7 @@ public class TestController {
     @GetMapping("/ethBlockNumber")
     public String ethBlockNumber() {
         
-        String url="http://besu-node.members.svc.cluster.local:8545";
+        String url="http://besu-node1.members.svc.cluster.local:8545";
         // create an instance of RestTemplate
         RestTemplate restTemplate = new RestTemplate();
 
@@ -71,9 +72,9 @@ public class TestController {
     @Autowired
     MytestRepository mytestRep;
     
-    @GetMapping("/psqlSel")
-    public String postgresql(){
-        Mytest mytest =mytestRep.findMytestById(1);
+    @GetMapping("/psqlSel/{id}")
+    public String postgresql(@PathVariable("id") Integer id){
+        Mytest mytest =mytestRep.findMytestById(id);
         return mytest.toString();
     }
     
